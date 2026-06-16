@@ -202,79 +202,175 @@ function initBlockedItemsMock() {
 
   const SLIDES = [
     {
-      id: "overview",
-      label:
-        "Blocked Items overview. Blocking 9 websites and 4 apps during the next focus session.",
+      id: "pick-websites",
+      label: "Most common distracting websites. Selecting sites to block.",
+      dwellMs: 3800,
+      toggles: ["facebook.com", "x.com", "tiktok.com"],
+      toggleDelayMs: 550,
     },
     {
       id: "add-website",
       label:
         "Add website dialog. Enter a domain or URL to block during focus sessions.",
+      dwellMs: 2500,
     },
     {
-      id: "distractions",
-      label:
-        "Blocked apps and most common distractions. Toggle popular sites to add to your blocklist.",
+      id: "pick-apps",
+      label: "Common distracting apps. Selecting apps to block.",
+      dwellMs: 3200,
+      toggles: ["WhatsApp", "Slack"],
+      toggleDelayMs: 550,
+    },
+    {
+      id: "success",
+      label: "Blocklist ready.",
+      dwellMs: 2500,
     },
   ];
 
   const FADE_MS = 250;
-  const INTERVAL_MS = 2000;
   let activeIndex = 0;
-  let intervalId = null;
+  let slideTimeoutId = null;
   let fadeTimeoutId = null;
+  let toggleTimeoutIds = [];
+  let isRunning = false;
+  let webCount = 0;
+  let appCount = 0;
 
-  function applySlide(index) {
-    activeIndex = ((index % slides.length) + slides.length) % slides.length;
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("is-active", i === activeIndex);
-      slide.classList.remove("is-fading");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const webCountEl = root.querySelector("[data-blocked-count-web]");
+  const appCountEl = root.querySelector("[data-blocked-count-app]");
+
+  function clearToggleTimers() {
+    toggleTimeoutIds.forEach(clearTimeout);
+    toggleTimeoutIds = [];
+  }
+
+  function resetToggles() {
+    root.querySelectorAll("[data-bi-toggle].is-on").forEach((toggle) => {
+      toggle.classList.remove("is-on");
     });
-    root.setAttribute("aria-label", SLIDES[activeIndex].label);
+    root.querySelectorAll(".blocked-items-row.is-selected").forEach((row) => {
+      row.classList.remove("is-selected");
+    });
+  }
+
+  function toggleRow(itemName) {
+    const row = root.querySelector(
+      `.blocked-items-view.is-active [data-item-name="${itemName}"]`,
+    );
+    if (!row) return;
+    const toggle = row.querySelector("[data-bi-toggle]");
+    if (toggle) toggle.classList.add("is-on");
+    row.classList.add("is-selected");
+  }
+
+  function updateSuccessCounts() {
+    const webSlide = SLIDES.find((s) => s.id === "pick-websites");
+    const appSlide = SLIDES.find((s) => s.id === "pick-apps");
+    webCount = webSlide?.toggles?.length ?? 0;
+    appCount = appSlide?.toggles?.length ?? 0;
+    if (webCountEl) webCountEl.textContent = String(webCount);
+    if (appCountEl) appCountEl.textContent = String(appCount);
+    const successSlide = SLIDES.find((s) => s.id === "success");
+    if (successSlide) {
+      successSlide.label = `Blocklist ready. ${webCount} websites and ${appCount} apps blocked during focus sessions.`;
+    }
+  }
+
+  function runToggleSequence(slide) {
+    clearToggleTimers();
+    if (!slide.toggles?.length) return;
+
+    if (reduced) {
+      slide.toggles.forEach((name) => toggleRow(name));
+      return;
+    }
+
+    slide.toggles.forEach((name, i) => {
+      const id = setTimeout(() => toggleRow(name), slide.toggleDelayMs * i);
+      toggleTimeoutIds.push(id);
+    });
+  }
+
+  function clearSlideTimer() {
+    if (slideTimeoutId) {
+      clearTimeout(slideTimeoutId);
+      slideTimeoutId = null;
+    }
+  }
+
+  function onSlideActivated(index) {
+    activeIndex = ((index % slides.length) + slides.length) % slides.length;
+    const slide = SLIDES[activeIndex];
+
+    slides.forEach((el, i) => {
+      el.classList.toggle("is-active", i === activeIndex);
+      el.classList.remove("is-fading", "is-entering");
+    });
+
+    resetToggles();
+
+    if (slide.id === "success") {
+      updateSuccessCounts();
+    } else if (slide.toggles) {
+      runToggleSequence(slide);
+    }
+
+    root.setAttribute("aria-label", slide.label);
+
+    clearSlideTimer();
+    if (isRunning && !reduced) {
+      slideTimeoutId = setTimeout(() => {
+        renderSlide(activeIndex + 1, true);
+      }, slide.dwellMs);
+    }
   }
 
   function renderSlide(index, animate) {
     const nextIndex =
       ((index % slides.length) + slides.length) % slides.length;
     if (!animate || nextIndex === activeIndex) {
-      applySlide(nextIndex);
+      onSlideActivated(nextIndex);
       return;
     }
 
     const current = slides[activeIndex];
     const next = slides[nextIndex];
 
-    next.classList.add("is-active", "is-fading");
+    clearSlideTimer();
+    clearToggleTimers();
+
+    next.classList.add("is-active", "is-fading", "is-entering");
     clearTimeout(fadeTimeoutId);
     requestAnimationFrame(() => {
       current.classList.add("is-fading");
       next.classList.remove("is-fading");
     });
     fadeTimeoutId = setTimeout(() => {
-      current.classList.remove("is-active", "is-fading");
-      activeIndex = nextIndex;
-      root.setAttribute("aria-label", SLIDES[activeIndex].label);
+      current.classList.remove("is-active", "is-fading", "is-entering");
+      onSlideActivated(nextIndex);
     }, FADE_MS);
   }
 
-  function tick() {
-    renderSlide(activeIndex + 1, true);
-  }
-
   function start() {
-    if (intervalId) return;
-    intervalId = setInterval(tick, INTERVAL_MS);
+    if (isRunning) {
+      onSlideActivated(activeIndex);
+      return;
+    }
+    isRunning = true;
+    onSlideActivated(activeIndex);
   }
 
   function stop() {
-    if (!intervalId) return;
-    clearInterval(intervalId);
-    intervalId = null;
+    isRunning = false;
+    clearSlideTimer();
+    clearToggleTimers();
   }
 
-  applySlide(0);
+  updateSuccessCounts();
+  onSlideActivated(0);
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
 
   observeMockSlideshow(root, start, stop);
@@ -472,81 +568,280 @@ function initVisualProgressMock() {
   const views = [...root.querySelectorAll(".visual-progress-view")];
   if (!views.length) return;
 
-  const VIEWS = [
+  const XP_SEGMENTS = [
+    { toLevel: 1, toXp: 500, durationMs: 700 },
+    { toLevel: 2, toXp: 1000, durationMs: 700 },
+    { toLevel: 3, toXp: 1750, durationMs: 700 },
+    { toLevel: 10, toXp: 50000, durationMs: 350, surge: true },
+  ];
+
+  const SLIDES = [
     {
       id: "levels",
       label:
-        "Focus legend progression. Beginner is active; locked tiers lead from Iron through Diamond to Legend.",
+        "Focus legend progression. XP rising through Iron, Bronze, and Silver, then surging to Legend at fifty thousand XP.",
+      dwellMs: 4000,
     },
     {
-      id: "weekly-streaks",
+      id: "streak-stats",
       label:
-        "Weekly focus streaks. Current streak 2 weeks, personal best 8 weeks, with a year of weekly goal progress.",
+        "Weekly focus streaks. Current streak 2 weeks, personal best 8 weeks.",
+      dwellMs: 2500,
+    },
+    {
+      id: "streak-heatmap",
+      label:
+        "Weekly streak trend. Year heatmap showing hits, misses, and upcoming weeks.",
+      dwellMs: 3000,
     },
     {
       id: "weekly-goal",
       label:
         "Weekly focus goal. Target 500 focus minutes, 175 completed, 225 remaining, 35% progress.",
+      dwellMs: 2500,
     },
   ];
 
   const FADE_MS = 250;
-  const INTERVAL_MS = 2000;
   let activeIndex = 0;
-  let intervalId = null;
+  let slideTimeoutId = null;
   let fadeTimeoutId = null;
+  let levelTimeoutIds = [];
+  let levelRafId = null;
+  let isRunning = false;
 
-  function applyView(index) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const levelNodes = [...root.querySelectorAll(".vp-level-node[data-level]")];
+  const captionEl = root.querySelector("[data-level-caption]");
+  const xpEl = root.querySelector("[data-xp-counter]");
+  const LEVEL_NAMES = { 0: "Beginner", 1: "Iron", 2: "Bronze", 3: "Silver", 10: "Legend" };
+
+  function easeOutCubic(t) {
+    return 1 - (1 - t) ** 3;
+  }
+
+  function easeInExpo(t) {
+    return t === 0 ? 0 : 2 ** (10 * t - 10);
+  }
+
+  function formatXp(value) {
+    return Math.round(value).toLocaleString("en-US");
+  }
+
+  function setXpDisplay(xp) {
+    if (xpEl) {
+      xpEl.textContent = formatXp(xp);
+    }
+  }
+
+  function clearLevelTimers() {
+    levelTimeoutIds.forEach(clearTimeout);
+    levelTimeoutIds = [];
+    if (levelRafId !== null) {
+      cancelAnimationFrame(levelRafId);
+      levelRafId = null;
+    }
+    xpEl?.classList.remove("is-surging");
+  }
+
+  function animateXp(fromXp, toXp, durationMs, { ease = easeOutCubic, onFrame, onComplete } = {}) {
+    return new Promise((resolve) => {
+      const start = performance.now();
+
+      function frame(now) {
+        const elapsed = now - start;
+        const t = durationMs <= 0 ? 1 : Math.min(elapsed / durationMs, 1);
+        const eased = ease(t);
+        const value = fromXp + (toXp - fromXp) * eased;
+        onFrame?.(value);
+        if (t < 1) {
+          levelRafId = requestAnimationFrame(frame);
+        } else {
+          levelRafId = null;
+          onComplete?.();
+          resolve();
+        }
+      }
+
+      levelRafId = requestAnimationFrame(frame);
+    });
+  }
+
+  function setOrbLabel(node, level) {
+    const orb = node.querySelector(".vp-level-node__orb");
+    if (!orb) return;
+    orb.textContent = String(level);
+    orb.removeAttribute("aria-hidden");
+  }
+
+  function clearOrbLabel(node) {
+    const orb = node.querySelector(".vp-level-node__orb");
+    if (!orb) return;
+    orb.textContent = "";
+    orb.setAttribute("aria-hidden", "true");
+  }
+
+  function resetLevels() {
+    levelNodes.forEach((node) => {
+      const level = parseInt(node.dataset.level, 10);
+      node.classList.remove("is-active", "is-unlocked");
+      node.classList.add("is-locked");
+      if (level === 0) {
+        node.classList.remove("is-locked");
+        node.classList.add("is-active");
+        setOrbLabel(node, 0);
+      } else {
+        clearOrbLabel(node);
+      }
+    });
+    if (captionEl) {
+      captionEl.textContent = `LVL 0 · ${LEVEL_NAMES[0]}`;
+    }
+    setXpDisplay(0);
+    xpEl?.classList.remove("is-surging");
+  }
+
+  function activateLevel(level) {
+    levelNodes.forEach((node) => {
+      const nodeLevel = parseInt(node.dataset.level, 10);
+      node.classList.remove("is-active", "is-unlocked", "is-locked");
+
+      if (nodeLevel === level) {
+        node.classList.add("is-active");
+        setOrbLabel(node, level);
+      } else if (nodeLevel < level) {
+        node.classList.add("is-unlocked");
+        setOrbLabel(node, nodeLevel);
+      } else {
+        node.classList.add("is-locked");
+        clearOrbLabel(node);
+      }
+    });
+
+    const name = LEVEL_NAMES[level] ?? `level ${level}`;
+    if (captionEl) {
+      captionEl.textContent = `LVL ${level} · ${name}`;
+    }
+
+    const activeSlide = SLIDES.find((s) => s.id === "levels");
+    if (activeSlide) {
+      activeSlide.label = `Focus legend progression. Currently at ${name}.`;
+    }
+  }
+
+  async function runLevelSequence() {
+    clearLevelTimers();
+    resetLevels();
+
+    if (reduced) {
+      setXpDisplay(50000);
+      activateLevel(10);
+      return;
+    }
+
+    let fromXp = 0;
+
+    for (const segment of XP_SEGMENTS) {
+      if (segment.surge) {
+        xpEl?.classList.add("is-surging");
+      }
+
+      await animateXp(fromXp, segment.toXp, segment.durationMs, {
+        ease: segment.surge ? easeInExpo : easeOutCubic,
+        onFrame: (value) => setXpDisplay(value),
+      });
+
+      if (segment.surge) {
+        xpEl?.classList.remove("is-surging");
+      }
+
+      activateLevel(segment.toLevel);
+      fromXp = segment.toXp;
+    }
+  }
+
+  function clearSlideTimer() {
+    if (slideTimeoutId) {
+      clearTimeout(slideTimeoutId);
+      slideTimeoutId = null;
+    }
+  }
+
+  function onViewActivated(index) {
     activeIndex = ((index % views.length) + views.length) % views.length;
+    const slide = SLIDES[activeIndex];
+
     views.forEach((view, i) => {
       view.classList.toggle("is-active", i === activeIndex);
-      view.classList.remove("is-fading");
+      view.classList.remove("is-fading", "is-entering");
     });
-    root.setAttribute("aria-label", VIEWS[activeIndex].label);
+
+    clearLevelTimers();
+    if (slide.id === "levels") {
+      runLevelSequence();
+    } else {
+      resetLevels();
+    }
+
+    root.setAttribute("aria-label", slide.label);
+
+    clearSlideTimer();
+    if (isRunning && !reduced) {
+      slideTimeoutId = setTimeout(() => {
+        renderView(activeIndex + 1, true);
+      }, slide.dwellMs);
+    }
   }
 
   function renderView(index, animate) {
     const nextIndex =
       ((index % views.length) + views.length) % views.length;
     if (!animate || nextIndex === activeIndex) {
-      applyView(nextIndex);
+      onViewActivated(nextIndex);
       return;
     }
 
     const current = views[activeIndex];
     const next = views[nextIndex];
 
-    next.classList.add("is-active", "is-fading");
+    clearSlideTimer();
+    clearLevelTimers();
+
+    next.classList.add("is-active", "is-fading", "is-entering");
     clearTimeout(fadeTimeoutId);
     requestAnimationFrame(() => {
       current.classList.add("is-fading");
       next.classList.remove("is-fading");
     });
     fadeTimeoutId = setTimeout(() => {
-      current.classList.remove("is-active", "is-fading");
-      activeIndex = nextIndex;
-      root.setAttribute("aria-label", VIEWS[activeIndex].label);
+      current.classList.remove("is-active", "is-fading", "is-entering");
+      onViewActivated(nextIndex);
     }, FADE_MS);
   }
 
-  function tick() {
-    renderView(activeIndex + 1, true);
-  }
-
   function start() {
-    if (intervalId) return;
-    intervalId = setInterval(tick, INTERVAL_MS);
+    if (isRunning) {
+      onViewActivated(activeIndex);
+      return;
+    }
+    isRunning = true;
+    onViewActivated(activeIndex);
   }
 
   function stop() {
-    if (!intervalId) return;
-    clearInterval(intervalId);
-    intervalId = null;
+    isRunning = false;
+    clearSlideTimer();
+    clearLevelTimers();
   }
 
-  applyView(0);
+  if (reduced) {
+    setXpDisplay(50000);
+    activateLevel(10);
+  } else {
+    resetLevels();
+  }
+  onViewActivated(0);
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) return;
 
   observeMockSlideshow(root, start, stop);

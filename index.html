@@ -372,8 +372,8 @@
       <article class="pair reverse how-stack__card">
         <div class="principle">
           <span class="num">02</span>
-          <h3>Pinpoint distractions <em>We'll block them!.</em></h3>
-          <p class="principle-lede">Your frequently distracting apps and websites will be completly blocked during focus sessions.</p>
+          <h3>Pinpoint distractions <em>We'll block them!</em></h3>
+          <p class="principle-lede">Your frequently distracting apps and websites will be completely blocked during focus sessions.</p>
           <ul class="bullets">
             <li>Put distracting apps in the block list.</li>
             <li>Put distracting websites on the blocklist. </li>
@@ -382,81 +382,49 @@
         </div>
         <div class="product">
           <div class="viz-frame">
-            <div class="blocked-items-mock" id="blockedItemsMock" aria-live="polite" aria-label="Blocked Items overview. Blocking 9 websites and 4 apps during the next focus session.">
-              <div class="blocked-items-mock__eyebrow">Blocked Items</div>
+            <div class="blocked-items-mock" id="blockedItemsMock" aria-live="polite" aria-label="Most common distracting websites. Selecting sites to block.">
               <div class="blocked-items-viewport">
-                <div class="blocked-items-view is-active" data-view="overview">
-                  <p class="blocked-items-banner">Block distracting sites and apps. During focus sessions they're off-limits—back during breaks. <em>Be ruthless.</em></p>
-                  <div class="blocked-items-status">
-                    <span class="blocked-items-status__lock" aria-hidden="true">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                    </span>
-                    <div>
-                      <div class="blocked-items-status__head">Blocking 9 websites + 4 apps</div>
-                      <div class="blocked-items-status__sub">Active during next focus session</div>
-                    </div>
+                <div class="blocked-items-mock__eyebrow">Blocked Items</div>
+                <div class="blocked-items-stage">
+                <div class="blocked-items-view is-active" data-view="pick-websites">
+                  <div class="blocked-items-scene-head">
+                    <span class="blocked-items-scene-head__title">Most common distractions</span>
+                    <span class="blocked-items-scene-head__sub">Toggle sites to add to your blocklist</span>
                   </div>
-                  <div class="blocked-items-listhead">
-                    <span>Your blocklist</span>
-                    <span class="blocked-items-listhead__actions">
-                      <span class="blocked-items-chip blocked-items-chip--web">Add website</span>
-                      <span class="blocked-items-chip blocked-items-chip--app">Add app</span>
-                    </span>
-                  </div>
-                  <ul class="blocked-items-rows">
-                    <li class="blocked-items-row">
-                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                      <span class="blocked-items-row__name">linkedin.com</span>
-                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                    </li>
-                    <li class="blocked-items-row">
-                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                      <span class="blocked-items-row__name">github.com</span>
-                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                    </li>
-                    <li class="blocked-items-row">
+                  <ul class="blocked-items-rows blocked-items-rows--scene">
+                    <li class="blocked-items-row" data-item-name="facebook.com">
                       <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">facebook.com</span>
                       <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--web" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
-                    <li class="blocked-items-row">
+                    <li class="blocked-items-row" data-item-name="x.com">
                       <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">x.com</span>
                       <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--web" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
-                  </ul>
-                </div>
-                <div class="blocked-items-view blocked-items-view--modal" data-view="add-website">
-                  <ul class="blocked-items-rows blocked-items-rows--backdrop" aria-hidden="true">
-                    <li class="blocked-items-row">
-                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                      <span class="blocked-items-row__name">amazon.com</span>
-                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                    </li>
-                    <li class="blocked-items-row">
-                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                      <span class="blocked-items-row__name">twitch.tv</span>
-                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                    </li>
-                    <li class="blocked-items-row">
+                    <li class="blocked-items-row" data-item-name="tiktok.com">
                       <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">tiktok.com</span>
                       <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--web" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
-                    <li class="blocked-items-row">
+                    <li class="blocked-items-row" data-item-name="youtube.com">
                       <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                      <span class="blocked-items-row__name">reddit.com</span>
+                      <span class="blocked-items-row__name">youtube.com</span>
                       <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--web" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row" data-item-name="instagram.com">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">instagram.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
                   </ul>
+                </div>
+                <div class="blocked-items-view blocked-items-view--centered" data-view="add-website">
                   <div class="blocked-items-modal" role="presentation">
                     <div class="blocked-items-modal__card">
                       <h3 class="blocked-items-modal__title">Add website</h3>
@@ -472,72 +440,55 @@
                     </div>
                   </div>
                 </div>
-                <div class="blocked-items-view" data-view="distractions">
-                  <ul class="blocked-items-rows blocked-items-rows--apps">
-                    <li class="blocked-items-row">
+                <div class="blocked-items-view" data-view="pick-apps">
+                  <div class="blocked-items-scene-head">
+                    <span class="blocked-items-scene-head__title">Block distracting apps</span>
+                    <span class="blocked-items-scene-head__sub">Toggle apps to add to your blocklist</span>
+                  </div>
+                  <ul class="blocked-items-rows blocked-items-rows--scene">
+                    <li class="blocked-items-row" data-item-name="Microsoft Outlook">
                       <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">Microsoft Outlook</span>
                       <span class="blocked-items-badge blocked-items-badge--app">App</span>
-                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--app" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
-                    <li class="blocked-items-row">
+                    <li class="blocked-items-row" data-item-name="WhatsApp">
                       <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">WhatsApp</span>
                       <span class="blocked-items-badge blocked-items-badge--app">App</span>
-                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--app" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
-                    <li class="blocked-items-row">
+                    <li class="blocked-items-row" data-item-name="Mail">
                       <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
                       <span class="blocked-items-row__name">Mail</span>
                       <span class="blocked-items-badge blocked-items-badge--app">App</span>
-                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      <span class="bi-toggle bi-toggle--app" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row" data-item-name="Slack">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">Slack</span>
+                      <span class="blocked-items-badge blocked-items-badge--app">App</span>
+                      <span class="bi-toggle bi-toggle--app" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row" data-item-name="Messages">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">Messages</span>
+                      <span class="blocked-items-badge blocked-items-badge--app">App</span>
+                      <span class="bi-toggle bi-toggle--app" data-bi-toggle aria-hidden="true"><span class="bi-toggle__knob"></span></span>
                     </li>
                   </ul>
-                  <div class="blocked-items-distractions">
-                    <div class="blocked-items-distractions__head">
-                      <span class="blocked-items-distractions__title">Most common distractions</span>
-                      <span class="blocked-items-distractions__count">15 websites</span>
-                    </div>
-                    <p class="blocked-items-distractions__sub">Popular sites people block. Toggle to add, or manually add your own.</p>
-                    <div class="blocked-items-grid">
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">facebook.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">x.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">tiktok.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">youtube.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">instagram.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                      <div class="blocked-items-grid__card">
-                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
-                        <span class="blocked-items-grid__name">netflix.com</span>
-                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
-                        <span class="bi-toggle bi-toggle--web" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
-                      </div>
-                    </div>
+                </div>
+                <div class="blocked-items-view blocked-items-view--centered" data-view="success">
+                  <div class="blocked-items-success">
+                    <span class="blocked-items-success__icon" aria-hidden="true">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </span>
+                    <p class="blocked-items-success__title">
+                      <span data-blocked-count-web>0</span> websites and <span data-blocked-count-app>0</span> apps blocked
+                    </p>
+                    <p class="blocked-items-success__sub">Active during your next focus session</p>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
@@ -622,32 +573,25 @@
                 <div class="visual-progress-view is-active" data-view="levels">
                   <div class="vp-levels">
                     <h3 class="vp-levels__headline">Can you become a Focus <em>legend</em>?</h3>
-                    <p class="vp-levels__sub">Your journey begins now. Master your focus one session at a time.</p>
-                    <div class="vp-levels__path" role="list" aria-label="Level progression">
-                      <div class="vp-levels__row">
-                        <span class="vp-level-node vp-level-node--start" aria-hidden="true">→</span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-active" role="listitem"><span class="vp-level-node__orb">0</span><span class="vp-level-node__name">LVL 0 · Beginner</span><span class="vp-level-node__xp">0 XP</span></span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 1 · Iron</span><span class="vp-level-node__xp">500 XP</span></span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 2 · Bronze</span><span class="vp-level-node__xp">1,000 XP</span></span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 3 · Silver</span><span class="vp-level-node__xp">1,750 XP</span></span>
-                      </div>
-                      <div class="vp-levels__row vp-levels__row--lower">
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 4 · Gold</span><span class="vp-level-node__xp">3,000 XP</span></span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 5 · Platinum</span><span class="vp-level-node__xp">4,500 XP</span></span>
-                        <span class="vp-level-connector" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 6 · Diamond</span><span class="vp-level-node__xp">6,500 XP</span></span>
-                        <span class="vp-level-connector vp-level-connector--dashed" aria-hidden="true"></span>
-                        <span class="vp-level-node is-locked vp-level-node--capstone" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 10 · Legend</span><span class="vp-level-node__xp">50,000 XP</span></span>
-                      </div>
+                    <div class="vp-levels__xp">
+                      <span class="vp-levels__xp-label">XP</span>
+                      <span class="vp-levels__xp-value" data-xp-counter aria-live="off">0</span>
+                    </div>
+                    <p class="vp-levels__caption" data-level-caption>LVL 0 · Beginner</p>
+                    <div class="vp-levels__rail" role="list" aria-label="Level progression">
+                      <span class="vp-level-node is-active" data-level="0" role="listitem"><span class="vp-level-node__orb">0</span><span class="vp-level-node__tier">Beginner</span></span>
+                      <span class="vp-level-connector" aria-hidden="true"></span>
+                      <span class="vp-level-node is-locked" data-level="1" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__tier">Iron</span></span>
+                      <span class="vp-level-connector" aria-hidden="true"></span>
+                      <span class="vp-level-node is-locked" data-level="2" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__tier">Bronze</span></span>
+                      <span class="vp-level-connector" aria-hidden="true"></span>
+                      <span class="vp-level-node is-locked" data-level="3" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__tier">Silver</span></span>
+                      <span class="vp-level-connector vp-level-connector--dashed" aria-hidden="true"></span>
+                      <span class="vp-level-node is-locked vp-level-node--capstone" data-level="10" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__tier">Legend</span></span>
                     </div>
                   </div>
                 </div>
-                <div class="visual-progress-view" data-view="weekly-streaks">
+                <div class="visual-progress-view" data-view="streak-stats">
                   <h3 class="vp-streaks__title">Your Weekly Focus <em>Streaks</em></h3>
                   <p class="vp-streaks__intro">Hit your Weekly Focus Goal to build your Streak. Miss a week and it resets to zero!</p>
                   <div class="vp-streaks__cards">
@@ -662,6 +606,9 @@
                       <span class="vp-streaks__card-foot">Good work!</span>
                     </div>
                   </div>
+                </div>
+                <div class="visual-progress-view" data-view="streak-heatmap">
+                  <h3 class="vp-streaks__title">Your streak <em>trend</em></h3>
                   <div class="vp-streaks__legend" aria-hidden="true">
                     <span><i class="vp-week vp-week--hit"></i> Hit</span>
                     <span><i class="vp-week vp-week--missed"></i> Missed</span>
@@ -729,10 +676,7 @@
           <div class="proof-item__inner">
             <span class="proof-item__num" aria-hidden="true">01</span>
             <div class="proof-item__body">
-              <div class="proof-item__head">
-                <h3>Deep focus <em>works.</em></h3>
-                <span class="proof-item__stat">+72% focus · +65% performance</span>
-              </div>
+              <h3>Deep focus <em>works.</em></h3>
               <p>When you eliminate interruptions, your brain enters flow state and does its best work. Focus sprints improve concentration by <strong>+72%</strong> and task performance by <strong>+65%</strong>. That's transformational.</p>
             </div>
           </div>
@@ -742,10 +686,7 @@
           <div class="proof-item__inner">
             <span class="proof-item__num" aria-hidden="true">02</span>
             <div class="proof-item__body">
-              <div class="proof-item__head">
-                <h3>Streaks build <em>momentum.</em></h3>
-                <span class="proof-item__stat">2× stronger than fresh starts</span>
-              </div>
+              <h3>Streaks build <em>momentum.</em></h3>
               <p>Your streak isn't just a number — it's proof you can focus. Loss aversion psychology shows the fear of breaking your streak is <strong>2× more powerful</strong> than motivation to start fresh. Your momentum becomes self-sustaining.</p>
             </div>
           </div>
@@ -755,10 +696,7 @@
           <div class="proof-item__inner">
             <span class="proof-item__num" aria-hidden="true">03</span>
             <div class="proof-item__body">
-              <div class="proof-item__head">
-                <h3>Guidance keeps you <em>on track.</em></h3>
-                <span class="proof-item__stat">Lower cognitive load</span>
-              </div>
+              <h3>Guidance keeps you <em>on track.</em></h3>
               <p>A coach doesn't just time your workout — they narrate it. We guide you through every sprint with narration, visual cues, and audio signals. No timer management burden. Just guidance.</p>
             </div>
           </div>
@@ -768,10 +706,7 @@
           <div class="proof-item__inner">
             <span class="proof-item__num" aria-hidden="true">04</span>
             <div class="proof-item__body">
-              <div class="proof-item__head">
-                <h3>Measurement drives <em>change.</em></h3>
-                <span class="proof-item__stat">+12% productivity via tracking</span>
-              </div>
+              <h3>Measurement drives <em>change.</em></h3>
               <p>Visible progress isn't vanity — it's fuel. Research shows focus tracking + visibility <strong>increases productivity by +12%</strong> and drives sustained behavior change. Your focus streaks, your badges, your XP. All proof.</p>
             </div>
           </div>
@@ -938,10 +873,8 @@
           <h4>Company</h4>
           <ul>
             <li><a href="/blog/">Blog</a></li>
-            <li><a href="/who-is-it-for/">Who is it for?</a></li>
             <li><a href="#faq">Help &amp; Support</a></li>
             <li><a href="mailto:focushackapp@gmail.com">Contact</a></li>
-            <li><a href="/">About</a></li>
           </ul>
         </div>
 
@@ -951,18 +884,12 @@
           <ul>
             <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="/terms-of-service">Terms of Service</a></li>
-            <li><a href="/privacy-policy#local-data">All data stays local</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
         <span>© 2026 FocusHacker · Built natively for Mac</span>
-        <div class="links">
-          <span>macOS app</span>
-          <span style="opacity:.4">·</span>
-          <span>All data local</span>
-        </div>
       </div>
     </div>
   </footer>

@@ -197,9 +197,9 @@ Mobile (≤980px): grid becomes single column; `.reverse` order resets to princi
 | Pair | Root ID | Additional IDs / selectors |
 |------|---------|----------------------------|
 | 1 | `focusSessionMock` | `focusSessionSelector`, `focusSessionName`, `focusSessionMeta`, `focusSessionConfig`, `focusSessionStage`, `focusSessionCta`, `focusSessionTimer`, `focusSessionCycle` |
-| 2 | `blockedItemsMock` | `.blocked-items-view` (3 slides) |
+| 2 | `blockedItemsMock` | `.blocked-items-view` (4 slides) |
 | 3 | `guidedSessionMock` | `.guided-session-view` with `data-view="countdown|focus|rest"`; `[data-guided-timer]` with `data-initial-min` / `data-initial-sec` |
-| 4 | `visualProgressMock` | `.visual-progress-view` with `data-view="levels|weekly-streaks|weekly-goal"` |
+| 4 | `visualProgressMock` | `.visual-progress-view` with `data-view="levels|streak-stats|streak-heatmap|weekly-goal"`; level nodes use `data-level` |
 
 If any required node is missing, the corresponding `init*` function exits early (no throw).
 
@@ -578,11 +578,20 @@ Mocks are **independent of sticky scroll**. They animate only when intersecting 
 
 ### Pair 2 — Blocked items (`#blockedItemsMock`)
 
-**Behavior:** 3 views in `.blocked-items-viewport`; absolute-positioned slides; `setInterval` 2000ms; crossfade via `.is-active` + `.is-fading`.
+**Behavior:** Dwell-based slide machine (like guided session)—each slide has `dwellMs`; after dwell, crossfade to next. List slides animate toggles on sequentially via `toggleDelayMs`. Success slide shows dynamic counts from toggle configs.
 
-**Views:** `overview`, `add-website`, `distractions` (class `.blocked-items-view`).
+| Slide `data-view` | dwellMs | toggleDelayMs | toggles |
+|-------------------|---------|---------------|---------|
+| `pick-websites` | 3800 | 550 | facebook.com, x.com, tiktok.com |
+| `add-website` | 2500 | — | — (modal only, no backdrop) |
+| `pick-apps` | 3200 | 550 | WhatsApp, Slack |
+| `success` | 2500 | — | dynamic counts in `[data-blocked-count-web]` / `[data-blocked-count-app]` |
 
-**CSS:** Views default `opacity: 0`; `.is-active` → `opacity: 1`, `z-index: 1`. ~1065–1107.
+**Height:** All scenes share `--blocked-items-scene-h: 280px` on `.blocked-items-viewport` (fixed height, no jump between slides).
+
+**Views:** `pick-websites`, `add-website`, `pick-apps`, `success` (class `.blocked-items-view`).
+
+**CSS:** Views default `opacity: 0`; `.is-active` → `opacity: 1`, `z-index: 1`. List scenes use `.blocked-items-rows--scene` (6 fixed rows). Centered scenes use `.blocked-items-view--centered`. ~1101–1470.
 
 ### Pair 3 — Guided session (`#guidedSessionMock`)
 
@@ -600,11 +609,22 @@ Mocks are **independent of sticky scroll**. They animate only when intersecting 
 
 ### Pair 4 — Visual progress (`#visualProgressMock`)
 
-**Behavior:** 3 views rotate every 2000ms with 250ms crossfade.
+**Behavior:** Dwell-based slide machine with 250ms crossfade. Levels slide runs an XP-driven count-up animation with synced rail; streaks split into two scenes.
 
-**Views:** `data-view="levels"`, `weekly-streaks`, `weekly-goal` (class `.visual-progress-view`).
+| Slide `data-view` | dwellMs | Animation |
+|-------------------|---------|-----------|
+| `levels` | 4000 | XP counts 0 → 500 → 1,000 → 1,750 (700ms each), then surges to 50,000 (350ms); level caption + rail sync at each threshold |
+| `streak-stats` | 2500 | Current + personal best cards only |
+| `streak-heatmap` | 3000 | Legend + year heatmap only |
+| `weekly-goal` | 2500 | Static (unchanged) |
 
-**CSS:** Same absolute stack pattern as pair 2. ~1470–1491.
+**Levels layout:** Static headline, `[data-xp-counter]` hero (mono counter with `is-surging` during fast-forward), dynamic `[data-level-caption]`, and a single-row rail with 5 nodes (`data-level="0|1|2|3|10"`). Short tier names under each dot; dashed connector between Silver and Legend implies skipped tiers.
+
+**XP thresholds:** 0 (Beginner), 500 (Iron), 1,000 (Bronze), 1,750 (Silver), 50,000 (Legend).
+
+**Level nodes:** `data-level` on each `.vp-level-node`; states `is-active`, `is-unlocked`, `is-locked`. Legend capstone uses orange accent when active/unlocked. `activateLevel()` updates caption and rail after each XP segment completes.
+
+**CSS:** Same absolute stack pattern as pair 2; flat `.vp-levels` (no inner border); 24px orbs; XP hero ~32px mono; `is-entering` z-index during crossfade. ~1488–1680.
 
 ### Viz frame (shared product chrome)
 

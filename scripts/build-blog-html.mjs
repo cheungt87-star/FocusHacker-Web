@@ -62,7 +62,6 @@ function footer() {
             <li><a href="/blog/">Blog</a></li>
             <li><a href="/#faq">Help &amp; Support</a></li>
             <li><a href="mailto:focushackapp@gmail.com">Contact</a></li>
-            <li><a href="/">About</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -70,17 +69,11 @@ function footer() {
           <ul>
             <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="/terms-of-service">Terms of Service</a></li>
-            <li><a href="/privacy-policy#local-data">All data stays local</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 FocusHacker · Built natively for Mac</span>
-        <div class="links">
-          <span>macOS app</span>
-          <span style="opacity:.4">·</span>
-          <span>All data local</span>
-        </div>
       </div>
     </div>
   </footer>`;
