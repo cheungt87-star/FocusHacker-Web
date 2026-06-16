@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/blog/mvp03", "destination": "/blog/why-focus-systems-matter", "permanent": true },
+    { "source": "/blog/mvp03/", "destination": "/blog/why-focus-systems-matter", "permanent": true },
+    { "source": "/blog/mvp04", "destination": "/blog/focus-apps-vs-systems", "permanent": true },
+    { "source": "/blog/mvp04/", "destination": "/blog/focus-apps-vs-systems", "permanent": true },
+    { "source": "/blog/mvp05", "destination": "/blog/best-focus-tools-mac", "permanent": true },
+    { "source": "/blog/mvp05/", "destination": "/blog/best-focus-tools-mac", "permanent": true }
+  ]
+}

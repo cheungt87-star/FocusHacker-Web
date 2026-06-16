@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FocusHacker: Complete Focus App for Mac | Distraction Blocker &amp; Streaks</title>
+  <meta name="description" content="FocusHacker: Complete focus system for Mac—distraction blocking, guided focus sessions, progress tracking. Focus more, level up, build streaks. Try free." />
+  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles-v3.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "name": "FocusHacker",
+  "description": "Complete focus system for Mac with distraction blocking, guided focus sessions, and progress tracking. Build focus habits that stick.",
+  "url": "https://focushacker.app",
+  "operatingSystem": "macOS",
+  "applicationCategory": "ProductivityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "7-day free trial"
+  },
+  "aggregateOffer": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "20",
+    "highPrice": "20",
+    "offerCount": "1",
+    "offers": {
+      "@type": "Offer",
+      "price": "20",
+      "priceCurrency": "USD",
+      "description": "Annual subscription after free trial"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "$20/year for FocusHacker, the focus app for Mac. That's $1.67/month. You get all features now and all future updates included. Start with a free 7-day trial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Download the app from the Mac App Store. Block your distractions—any app on your Mac or any domain you choose. Set a focus time and we'll guide you through it. Build your focus streak and level up as you use it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What distractions can FocusHacker block?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FocusHacker's distraction blocker works with any app installed on your Mac and any domain you choose. During your focus session, they won't open. Once your session ends, they're accessible again. You're in control."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will this work offline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. FocusHacker works completely offline—no internet required. Download it, use it, build your streak with zero cloud dependency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it scientifically proven?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every feature is backed by peer-reviewed research: focus sprints improve concentration by +72% (University of Michigan), progress tracking increases productivity by +12% (Harvard), and streaks build habits 2× faster than fresh starts (behavioral psychology)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does this compare to other productivity or distraction apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most competitors do one thing: they're timers, or blockers, or habit trackers. FocusHacker is a complete system. You get blocking + guided sessions + streak gamification + progress tracking all integrated together. You don't need four separate tools scattered across your Mac; you need one system that works."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+  <div class="waitlist-banner" id="waitlistBanner" role="region" aria-label="Announcement">
+    <p>🎉 FocusHacker for Mac is coming soon. Join the waitlist for early access and beta testing.</p>
+    <button type="button" class="waitlist-banner__close" id="waitlistBannerClose" aria-label="Dismiss announcement">×</button>
+  </div>
+
+  <!-- NAV — per strategy doc: Home, Blog, How It Works, Help & Support, primary trial CTA -->
+  <div class="nav-wrap">
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#top" class="nav-logo">
+        <span class="logo-mark">
+          <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x" alt="" width="28" height="28" decoding="async" />
+        </span>
+        FocusHacker
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#top">Home</a>
+        <a href="#how">How It Works</a>
+        <a href="/blog/">Blog</a>
+        <a href="#faq">Help &amp; Support</a>
+      </div>
+      <div class="nav-actions">
+        <button type="button" class="nav-menu-btn" id="navMenuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <div class="right">
+          <button class="btn btn-primary" type="button" data-waitlist-open><span class="btn-label-long">Join the waitlist</span><span class="btn-label-short">Waitlist</span></button>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ==========================================================
+       SECTION 1 — HERO
+       Headline + subhead + streak visual (per doc)
+       ========================================================== -->
+  <header id="top" class="hero tuck" data-screen-label="01 Hero">
+    <div class="wrap hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">Coming Soon</span>
+        <h1>The <em>Complete Focus System</em> for Mac</h1>
+        <p class="hero-sub">
+          Block distracting apps and websites, structure your work with guided focus sessions, and track progress as you build focus habits. Everything integrated in one app.
+        </p>
+        <div class="hero-cta-row">
+          <button class="btn btn-primary btn-lg" type="button" data-waitlist-open>
+            Join the waitlist
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="arr"><path d="M3 6h6m0 0L6 3m3 3L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <a class="btn btn-ghost btn-lg" href="#how">See how it works</a>
+        </div>
+      </div>
+
+      <!-- HERO VISUAL: FH Hero animation (macOS desktop demo) -->
+      <div class="hero-visual reveal" id="heroAnimation" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <!-- ==========================================================
+       SECTION 2 — THE PROBLEM
+       Problem → Evidence → Data
+       ========================================================== -->
+  <section class="problem-forest tuck" id="problem" data-screen-label="02 Problem">
+    <div class="wrap">
+      <div class="problem-head">
+        <h2>Your best work needs focus. Distractions keep it from happening.</h2>
+        <p class="problem-intro">
+          Focus Is Harder Than It Looks. You're not lazy. You just need a better system!
+        </p>
+      </div>
+
+      <div class="problem-columns">
+        <article class="problem-col reveal" data-problem-viz="slack">
+          <div class="problem-viz-frame">
+            <div class="problem-viz problem-viz--interrupt interrupt-viz" aria-hidden="true">
+              <div class="interrupt-clock-wrap">
+                <time class="interrupt-clock" datetime="10:05">10:05 AM</time>
+                <span class="interrupt-delta" hidden>+23 min</span>
+              </div>
+              <div class="interrupt-apps" role="presentation">
+                <div class="interrupt-app" data-app="slack">
+                  <span class="interrupt-app__icon interrupt-app__icon--slack" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="5" fill="#4A154B"/><path fill="#fff" d="M6 10h4V6H8a2 2 0 00-2 2v2zm2 4H6v2a2 2 0 002 2h2v-4zm8-4h-4v4h4a2 2 0 002-2V8a2 2 0 00-2-2zm-4 8h4v2a2 2 0 01-2 2h-2v-4zm-4-4H6v4h4v-4zm8 0h4v4h-4v-4z"/></svg>
+                  </span>
+                  <span class="interrupt-app__badge" aria-hidden="true">1</span>
+                </div>
+                <div class="interrupt-app" data-app="outlook">
+                  <span class="interrupt-app__icon interrupt-app__icon--outlook" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="5" fill="#0078D4"/><path fill="#fff" d="M4 6h9v12H4V6zm11 2l5 2v8l-5 2V8z"/></svg>
+                  </span>
+                  <span class="interrupt-app__badge" aria-hidden="true">1</span>
+                </div>
+                <div class="interrupt-app" data-app="whatsapp">
+                  <span class="interrupt-app__icon interrupt-app__icon--whatsapp" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="5" fill="#25D366"/><path fill="#fff" d="M12 4a8 8 0 00-6.9 12L4 20l4.2-1.1A8 8 0 1012 4zm0 2a6 6 0 016 6c0 1.1-.3 2.1-.8 3l.5 2-2-.6A6 6 0 0112 6z"/></svg>
+                  </span>
+                  <span class="interrupt-app__badge" aria-hidden="true">1</span>
+                </div>
+                <div class="interrupt-app" data-app="teams">
+                  <span class="interrupt-app__icon interrupt-app__icon--teams" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22"><rect width="24" height="24" rx="5" fill="#6264A7"/><path fill="#fff" d="M8 6h8v12H8V6zm2 2v8h4V8h-4z"/></svg>
+                  </span>
+                  <span class="interrupt-app__badge" aria-hidden="true">1</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="problem-stat-line">That quick Slack check costs you <em>23 minutes</em></p>
+          <p class="problem-stat-body">Research shows it takes an average of 23 minutes to refocus after an interruption. Every notification resets your deep work clock.</p>
+          <p class="problem-src">UC Irvine research</p>
+        </article>
+
+        <article class="problem-col reveal" data-problem-viz="distraction-day">
+          <div class="problem-viz-frame">
+            <div class="problem-viz problem-viz--day" aria-hidden="true">
+              <div class="day-head">
+                <span class="day-pct">40% lost</span>
+              </div>
+              <div class="day-chart">
+                <div class="day-axis" aria-hidden="true">
+                  <span>8a</span><span>10a</span><span>12p</span><span>2p</span><span>4p</span><span>6p</span>
+                </div>
+                <div class="day-strip" data-day-strip></div>
+              </div>
+              <div class="day-legend">
+                <span class="day-legend-item"><i class="swatch lost"></i> Distracted / context switching</span>
+                <span class="day-legend-item"><i class="swatch focus"></i> Focus</span>
+              </div>
+            </div>
+          </div>
+          <p class="problem-stat-line"><em>40%</em> of your workday vanishes to distractions</p>
+          <p class="problem-stat-body">Interruptions aren't just lost time—they compound. Each context switch reduces focus capacity, making the next switch even more damaging.</p>
+          <p class="problem-src">Microsoft, 2024</p>
+        </article>
+
+        <article class="problem-col reveal" data-problem-viz="sprint-comparison">
+          <div class="problem-viz-frame">
+            <div class="problem-viz problem-viz--sprint" aria-hidden="true">
+              <div class="sprint-scene sprint-scene--sub">
+                <div class="day-chart">
+                  <div class="day-axis" aria-hidden="true">
+                    <span>8a</span><span>10a</span><span>12p</span><span>2p</span><span>4p</span><span>6p</span>
+                  </div>
+                  <div class="sprint-track sprint-track--marathon">
+                    <span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span><span class="sprint-slot" aria-hidden="true"></span>
+                    <div class="sprint-block sprint-block--marathon" data-range="9-12"><span class="sprint-block__range">9–12</span> Focus</div>
+                    <div class="sprint-block sprint-block--marathon" data-range="2-5"><span class="sprint-block__range">2–5</span> Focus</div>
+                  </div>
+                </div>
+                <p class="sprint-verdict sprint-verdict--sub">Sub-optimal</p>
+              </div>
+              <div class="sprint-scene sprint-scene--opt">
+                <div class="day-chart">
+                  <div class="day-axis" aria-hidden="true">
+                    <span>8a</span><span>10a</span><span>12p</span><span>2p</span><span>4p</span><span>6p</span>
+                  </div>
+                  <div class="sprint-track sprint-track--bursts">
+                    <div class="sprint-block sprint-block--focus">Focus</div>
+                    <div class="sprint-block sprint-block--rest">Rest</div>
+                    <div class="sprint-block sprint-block--focus">Focus</div>
+                    <div class="sprint-block sprint-block--rest">Rest</div>
+                    <div class="sprint-block sprint-block--focus">Focus</div>
+                  </div>
+                </div>
+                <p class="sprint-verdict sprint-verdict--opt">Optimal</p>
+              </div>
+            </div>
+          </div>
+          <p class="problem-stat-line">Your brain works in sprints, not marathons</p>
+          <p class="problem-stat-body">Research from the University of Michigan and Stanford shows that short, focused bursts with regular breaks deliver 40% higher productivity and 50% less fatigue than marathon sessions.</p>
+          <p class="problem-src">University of Michigan &amp; Stanford</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 3 — HOW IT WORKS
+       4 principle + product pairs (alternating left-right) on cream
+       ========================================================== -->
+  <section class="how-pairs tuck" id="how" data-screen-label="03 How it works" aria-labelledby="how-heading">
+    <div class="wrap">
+      <div class="how-head">
+        <h2 id="how-heading">FocusHacker <em>Removes friction</em> so you can focus on what matters.</h2>
+        <p>Four integrated systems, one rhythm — principle on the left, product on the right.</p>
+      </div>
+
+      <div class="how-stack" aria-label="FocusHacker works">
+
+      <!-- PAIR 1: SPRINT-BASED WORK -->
+      <div class="how-stack__pin">
+      <article class="pair how-stack__card">
+        <div class="principle">
+          <span class="num">01</span>
+          <h3>Choose your <em>focus sprint.</em></h3>
+          <p class="principle-lede">Your brain works best in short bursts of focus. Not marathon sessions.</p>
+          <ul class="bullets">
+            <li>Select your focus session from science backed presets</li>
+            <li>Over time, progress to longe, more intense sessions</li>
+            <li>Alternatively, create your own custom session to meet your needs</li>
+          </ul>
+        </div>
+        <div class="product">
+          <div class="viz-frame">
+            <div class="focus-session-mock" id="focusSessionMock" aria-live="polite" aria-label="Focus session presets">
+              <div class="focus-session-mock__eyebrow">Focus Session</div>
+
+              <div class="focus-session-selector" id="focusSessionSelector">
+                <span class="focus-session-selector__chev" aria-hidden="true">‹</span>
+                <div class="focus-session-selector__body">
+                  <div class="focus-session-selector__name" id="focusSessionName">Classic</div>
+                  <div class="focus-session-selector__meta focus-session-fade" id="focusSessionMeta">25 min · 5 min break · 4 cycles</div>
+                </div>
+                <span class="focus-session-selector__chev" aria-hidden="true">›</span>
+              </div>
+
+              <div class="focus-session-config focus-session-fade" id="focusSessionConfig" hidden>
+                <div class="focus-session-config__row">
+                  <span class="focus-session-config__bullet" aria-hidden="true"></span>
+                  <span class="focus-session-config__label">Focus Time</span>
+                  <span class="focus-session-config__steppers">
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">50</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                    <span class="focus-session-config__sep">:</span>
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">0</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                  </span>
+                </div>
+                <div class="focus-session-config__row">
+                  <span class="focus-session-config__bullet" aria-hidden="true"></span>
+                  <span class="focus-session-config__label">Short Break</span>
+                  <span class="focus-session-config__steppers">
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">10</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                    <span class="focus-session-config__sep">:</span>
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">0</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                  </span>
+                </div>
+                <div class="focus-session-config__row">
+                  <span class="focus-session-config__bullet" aria-hidden="true"></span>
+                  <span class="focus-session-config__label">Focus Sets</span>
+                  <span class="focus-session-config__steppers">
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">3</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                  </span>
+                </div>
+                <div class="focus-session-config__subhead">Repeat Schedule</div>
+                <div class="focus-session-config__row">
+                  <span class="focus-session-config__bullet" aria-hidden="true"></span>
+                  <span class="focus-session-config__label">Total Sessions</span>
+                  <span class="focus-session-config__steppers">
+                    <span class="focus-session-config__input"><span class="focus-session-config__val">1</span><span class="focus-session-config__arrows" aria-hidden="true">▴▾</span></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="focus-session-stage focus-session-fade" id="focusSessionStage">
+                <div class="focus-session-stage__status">Up next · Focus</div>
+                <div class="focus-session-stage__timer focus-session-fade" id="focusSessionTimer">25:00</div>
+                <div class="focus-session-stage__cycle focus-session-fade" id="focusSessionCycle">Cycle 1 / 4</div>
+              </div>
+
+              <button type="button" class="focus-session-cta focus-session-fade" id="focusSessionCta" tabindex="-1" aria-hidden="true">
+                <span class="focus-session-cta__icon" aria-hidden="true">▶</span>
+                Start Focus Session
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      <!-- PAIR 2: SYSTEM-LEVEL BLOCKING -->
+      <div class="how-stack__pin">
+      <article class="pair reverse how-stack__card">
+        <div class="principle">
+          <span class="num">02</span>
+          <h3>Pinpoint distractions <em>We'll block them!.</em></h3>
+          <p class="principle-lede">Your frequently distracting apps and websites will be completly blocked during focus sessions.</p>
+          <ul class="bullets">
+            <li>Put distracting apps in the block list.</li>
+            <li>Put distracting websites on the blocklist. </li>
+            <li>Blocked. Completely. Until a break or session ends. No workarounds</li>
+          </ul>
+        </div>
+        <div class="product">
+          <div class="viz-frame">
+            <div class="blocked-items-mock" id="blockedItemsMock" aria-live="polite" aria-label="Blocked Items overview. Blocking 9 websites and 4 apps during the next focus session.">
+              <div class="blocked-items-mock__eyebrow">Blocked Items</div>
+              <div class="blocked-items-viewport">
+                <div class="blocked-items-view is-active" data-view="overview">
+                  <p class="blocked-items-banner">Block distracting sites and apps. During focus sessions they're off-limits—back during breaks. <em>Be ruthless.</em></p>
+                  <div class="blocked-items-status">
+                    <span class="blocked-items-status__lock" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </span>
+                    <div>
+                      <div class="blocked-items-status__head">Blocking 9 websites + 4 apps</div>
+                      <div class="blocked-items-status__sub">Active during next focus session</div>
+                    </div>
+                  </div>
+                  <div class="blocked-items-listhead">
+                    <span>Your blocklist</span>
+                    <span class="blocked-items-listhead__actions">
+                      <span class="blocked-items-chip blocked-items-chip--web">Add website</span>
+                      <span class="blocked-items-chip blocked-items-chip--app">Add app</span>
+                    </span>
+                  </div>
+                  <ul class="blocked-items-rows">
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">linkedin.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">github.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">facebook.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">x.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="blocked-items-view blocked-items-view--modal" data-view="add-website">
+                  <ul class="blocked-items-rows blocked-items-rows--backdrop" aria-hidden="true">
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">amazon.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">twitch.tv</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">tiktok.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">reddit.com</span>
+                      <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                      <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                  </ul>
+                  <div class="blocked-items-modal" role="presentation">
+                    <div class="blocked-items-modal__card">
+                      <h3 class="blocked-items-modal__title">Add website</h3>
+                      <p class="blocked-items-modal__desc">Enter a domain or URL to block during focus sessions.</p>
+                      <label class="blocked-items-modal__field">
+                        <span class="blocked-items-modal__label">Domain</span>
+                        <span class="blocked-items-modal__input" aria-hidden="true"></span>
+                      </label>
+                      <div class="blocked-items-modal__actions">
+                        <span class="blocked-items-modal__btn blocked-items-modal__btn--ghost">Cancel</span>
+                        <span class="blocked-items-modal__btn blocked-items-modal__btn--primary">Add</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="blocked-items-view" data-view="distractions">
+                  <ul class="blocked-items-rows blocked-items-rows--apps">
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">Microsoft Outlook</span>
+                      <span class="blocked-items-badge blocked-items-badge--app">App</span>
+                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">WhatsApp</span>
+                      <span class="blocked-items-badge blocked-items-badge--app">App</span>
+                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                    <li class="blocked-items-row">
+                      <span class="blocked-items-row__ico blocked-items-row__ico--app" aria-hidden="true"></span>
+                      <span class="blocked-items-row__name">Mail</span>
+                      <span class="blocked-items-badge blocked-items-badge--app">App</span>
+                      <span class="bi-toggle bi-toggle--app is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                    </li>
+                  </ul>
+                  <div class="blocked-items-distractions">
+                    <div class="blocked-items-distractions__head">
+                      <span class="blocked-items-distractions__title">Most common distractions</span>
+                      <span class="blocked-items-distractions__count">15 websites</span>
+                    </div>
+                    <p class="blocked-items-distractions__sub">Popular sites people block. Toggle to add, or manually add your own.</p>
+                    <div class="blocked-items-grid">
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">facebook.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">x.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">tiktok.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">youtube.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web is-on" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">instagram.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                      <div class="blocked-items-grid__card">
+                        <span class="blocked-items-row__ico blocked-items-row__ico--web" aria-hidden="true"></span>
+                        <span class="blocked-items-grid__name">netflix.com</span>
+                        <span class="blocked-items-badge blocked-items-badge--web">Website</span>
+                        <span class="bi-toggle bi-toggle--web" aria-hidden="true"><span class="bi-toggle__knob"></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      <!-- PAIR 3: GUIDED FOCUS -->
+      <div class="how-stack__pin">
+      <article class="pair how-stack__card">
+        <div class="principle">
+          <span class="num">03</span>
+          <h3><em>Start your session</em> We'll guide you.</h3>
+          <p class="principle-lede">We keep track of time whilst you focus. Living discreetly in your menubar we will provide visual and audio nudges as we cycle through focus and breaks.</p>
+          <ul class="bullets">
+            <li>Discreet notifications from menu bar</li>
+            <li>A friendly coach, who will give you audio cues</li>
+            <li>Non-distracting guidance — you stay in flow, we handle the timing</li>
+          </ul>
+        </div>
+        <div class="product">
+          <div class="viz-frame">
+            <div class="guided-session-mock" id="guidedSessionMock" aria-live="polite" aria-label="Get ready countdown. Three seconds until focus begins.">
+              <div class="guided-session-viewport">
+                <div class="guided-session-view is-active" data-view="countdown">
+                  <div class="guided-scene guided-scene--countdown">
+                    <div class="focus-session-mock__eyebrow">Focus Session</div>
+                    <div class="guided-scene__hero">
+                      <div class="guided-scene__label">Get ready</div>
+                      <div class="guided-scene__timer" data-guided-timer data-initial-min="0" data-initial-sec="3">00<span class="guided-scene__colon">:</span>03</div>
+                    </div>
+                    <p class="guided-scene__sub">Classic · starting in 3 seconds</p>
+                  </div>
+                </div>
+                <div class="guided-session-view" data-view="focus">
+                  <div class="guided-scene guided-scene--focus">
+                    <div class="focus-session-mock__eyebrow">Focus Session</div>
+                    <div class="guided-scene__hero">
+                      <div class="guided-scene__label">Focus</div>
+                      <div class="guided-scene__timer" data-guided-timer data-initial-min="24" data-initial-sec="55">24<span class="guided-scene__colon">:</span>55</div>
+                      <div class="guided-scene__track" aria-hidden="true"><div class="guided-scene__track-fill"></div></div>
+                    </div>
+                    <p class="guided-scene__sub">Classic · Cycle 1 / 4</p>
+                  </div>
+                </div>
+                <div class="guided-session-view" data-view="rest">
+                  <div class="guided-scene guided-scene--rest">
+                    <div class="focus-session-mock__eyebrow">Focus Session</div>
+                    <div class="guided-scene__hero">
+                      <div class="guided-scene__label">Rest</div>
+                      <div class="guided-scene__timer" data-guided-timer data-initial-min="4" data-initial-sec="55">04<span class="guided-scene__colon">:</span>55</div>
+                    </div>
+                    <p class="guided-scene__sub">Short break · Cycle 1 / 4</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      <!-- PAIR 4: VISIBLE PROGRESS -->
+      <div class="how-stack__pin">
+      <article class="pair reverse how-stack__card">
+        <div class="principle">
+          <span class="num">04</span>
+          <h3><em>Track your progress</em> Focus & level up.</h3>
+          <p class="principle-lede">You can't improve what you don't track. Easily track your progress over time and improve your focus.</p>
+          <ul class="bullets">
+            <li>Every FocusHacker user has a weekly goal. Hit it and build your streak. Miss it? Streak ends. How high can you go?</li>
+            <li>Earn XP for every session. As you earn more, you level up, unlocking badges and earning titles. Can you get to Legend?</li>
+            <li>Track everything in the app so you can see your progress over time</li>
+          </ul>
+        </div>
+        <div class="product">
+          <div class="viz-frame">
+            <div class="visual-progress-mock" id="visualProgressMock" aria-live="polite" aria-label="Focus legend progression. Beginner is active; Iron through Legend tiers are ahead.">
+              <div class="visual-progress-mock__eyebrow">Visual Progress</div>
+              <div class="visual-progress-viewport">
+                <div class="visual-progress-view is-active" data-view="levels">
+                  <div class="vp-levels">
+                    <h3 class="vp-levels__headline">Can you become a Focus <em>legend</em>?</h3>
+                    <p class="vp-levels__sub">Your journey begins now. Master your focus one session at a time.</p>
+                    <div class="vp-levels__path" role="list" aria-label="Level progression">
+                      <div class="vp-levels__row">
+                        <span class="vp-level-node vp-level-node--start" aria-hidden="true">→</span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-active" role="listitem"><span class="vp-level-node__orb">0</span><span class="vp-level-node__name">LVL 0 · Beginner</span><span class="vp-level-node__xp">0 XP</span></span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 1 · Iron</span><span class="vp-level-node__xp">500 XP</span></span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 2 · Bronze</span><span class="vp-level-node__xp">1,000 XP</span></span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 3 · Silver</span><span class="vp-level-node__xp">1,750 XP</span></span>
+                      </div>
+                      <div class="vp-levels__row vp-levels__row--lower">
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 4 · Gold</span><span class="vp-level-node__xp">3,000 XP</span></span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 5 · Platinum</span><span class="vp-level-node__xp">4,500 XP</span></span>
+                        <span class="vp-level-connector" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 6 · Diamond</span><span class="vp-level-node__xp">6,500 XP</span></span>
+                        <span class="vp-level-connector vp-level-connector--dashed" aria-hidden="true"></span>
+                        <span class="vp-level-node is-locked vp-level-node--capstone" role="listitem"><span class="vp-level-node__orb" aria-hidden="true"></span><span class="vp-level-node__name">LVL 10 · Legend</span><span class="vp-level-node__xp">50,000 XP</span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="visual-progress-view" data-view="weekly-streaks">
+                  <h3 class="vp-streaks__title">Your Weekly Focus <em>Streaks</em></h3>
+                  <p class="vp-streaks__intro">Hit your Weekly Focus Goal to build your Streak. Miss a week and it resets to zero!</p>
+                  <div class="vp-streaks__cards">
+                    <div class="vp-streaks__card vp-streaks__card--current">
+                      <span class="vp-streaks__card-label">Current streak</span>
+                      <span class="vp-streaks__card-value"><em>2</em> weeks</span>
+                      <span class="vp-streaks__card-foot">How high can you get?</span>
+                    </div>
+                    <div class="vp-streaks__card">
+                      <span class="vp-streaks__card-label">Personal best</span>
+                      <span class="vp-streaks__card-value">8 weeks</span>
+                      <span class="vp-streaks__card-foot">Good work!</span>
+                    </div>
+                  </div>
+                  <div class="vp-streaks__legend" aria-hidden="true">
+                    <span><i class="vp-week vp-week--hit"></i> Hit</span>
+                    <span><i class="vp-week vp-week--missed"></i> Missed</span>
+                    <span><i class="vp-week vp-week--progress"></i> In progress</span>
+                    <span><i class="vp-week vp-week--upcoming"></i> Upcoming</span>
+                  </div>
+                  <div class="vp-streaks__grid">
+                    <div class="vp-streaks__row"><span class="vp-streaks__quarter">Jan — Mar</span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span></div>
+                    <div class="vp-streaks__row"><span class="vp-streaks__quarter">Apr — Jun</span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--progress" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span></div>
+                    <div class="vp-streaks__row"><span class="vp-streaks__quarter">Jul — Sep</span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span></div>
+                    <div class="vp-streaks__row"><span class="vp-streaks__quarter">Oct — Dec</span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--missed" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--upcoming" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span><span class="vp-week vp-week--hit" aria-hidden="true"></span></div>
+                  </div>
+                </div>
+                <div class="visual-progress-view" data-view="weekly-goal">
+                  <h3 class="vp-goal__title">Weekly <em>goal</em></h3>
+                  <div class="vp-goal__card">
+                    <div class="vp-goal__stats">
+                      <div class="vp-goal__stat">
+                        <span class="vp-goal__stat-label">Target</span>
+                        <span class="vp-goal__stat-value">500</span>
+                        <span class="vp-goal__stat-unit">Focus Minutes</span>
+                      </div>
+                      <div class="vp-goal__stat">
+                        <span class="vp-goal__stat-label">Completed</span>
+                        <span class="vp-goal__stat-value">175</span>
+                        <span class="vp-goal__stat-unit">Focus Minutes</span>
+                      </div>
+                      <div class="vp-goal__stat">
+                        <span class="vp-goal__stat-label">Remaining</span>
+                        <span class="vp-goal__stat-value vp-goal__stat-value--accent">225</span>
+                        <span class="vp-goal__stat-unit">Focus Minutes</span>
+                      </div>
+                    </div>
+                    <div class="vp-goal__progress">
+                      <div class="vp-goal__track" aria-hidden="true"><span class="vp-goal__fill" style="width: 35%"></span></div>
+                      <span class="vp-goal__pct">35%</span>
+                    </div>
+                    <p class="vp-goal__foot">Personal goal: 0/860 · 860 to go</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 4 — PROOF
+       Numbered research checklist on forest green
+       ========================================================== -->
+  <section class="proof-forest tuck" id="proof" data-screen-label="04 Proof">
+    <div class="wrap">
+      <div class="proof-head">
+        <h2>Backed by 50+ years of <em>focus research.</em></h2>
+      </div>
+
+      <ol class="proof-list">
+        <li class="proof-item reveal">
+          <div class="proof-item__inner">
+            <span class="proof-item__num" aria-hidden="true">01</span>
+            <div class="proof-item__body">
+              <div class="proof-item__head">
+                <h3>Deep focus <em>works.</em></h3>
+                <span class="proof-item__stat">+72% focus · +65% performance</span>
+              </div>
+              <p>When you eliminate interruptions, your brain enters flow state and does its best work. Focus sprints improve concentration by <strong>+72%</strong> and task performance by <strong>+65%</strong>. That's transformational.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="proof-item reveal">
+          <div class="proof-item__inner">
+            <span class="proof-item__num" aria-hidden="true">02</span>
+            <div class="proof-item__body">
+              <div class="proof-item__head">
+                <h3>Streaks build <em>momentum.</em></h3>
+                <span class="proof-item__stat">2× stronger than fresh starts</span>
+              </div>
+              <p>Your streak isn't just a number — it's proof you can focus. Loss aversion psychology shows the fear of breaking your streak is <strong>2× more powerful</strong> than motivation to start fresh. Your momentum becomes self-sustaining.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="proof-item reveal">
+          <div class="proof-item__inner">
+            <span class="proof-item__num" aria-hidden="true">03</span>
+            <div class="proof-item__body">
+              <div class="proof-item__head">
+                <h3>Guidance keeps you <em>on track.</em></h3>
+                <span class="proof-item__stat">Lower cognitive load</span>
+              </div>
+              <p>A coach doesn't just time your workout — they narrate it. We guide you through every sprint with narration, visual cues, and audio signals. No timer management burden. Just guidance.</p>
+            </div>
+          </div>
+        </li>
+
+        <li class="proof-item reveal">
+          <div class="proof-item__inner">
+            <span class="proof-item__num" aria-hidden="true">04</span>
+            <div class="proof-item__body">
+              <div class="proof-item__head">
+                <h3>Measurement drives <em>change.</em></h3>
+                <span class="proof-item__stat">+12% productivity via tracking</span>
+              </div>
+              <p>Visible progress isn't vanity — it's fuel. Research shows focus tracking + visibility <strong>increases productivity by +12%</strong> and drives sustained behavior change. Your focus streaks, your badges, your XP. All proof.</p>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 5 — PRICING
+       $20/year with breakdown · Mac App Store credibility · trial
+       ========================================================== -->
+  <section class="pricing" id="pricing" data-screen-label="05 Pricing">
+    <div class="wrap-narrow">
+      <div class="pricing-head">
+        <h2>One system. <em>Unlimited Focus.</em></h2>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tier">
+          <span>FocusHacker for Mac</span>
+          <span class="badge">7-day free trial</span>
+        </div>
+        <div class="price-row">
+          <span class="amount">$20</span>
+          <span class="per">/ year</span>
+        </div>
+        <div class="price-breakdown">
+          <span>That's <b>$1.67</b>/month</span>
+          <span><b>$0.38</b>/week</span>
+          <span><b>5¢</b>/day</span>
+        </div>
+
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Native Mac app — all features unlocked</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Unlimited focus sessions, blocklists, badges</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All future updates included in your $20/year</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>7-day free trial (no credit card required)</li>
+          <li><span class="check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6.5 5 9l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>All data stays local on your Mac · zero cloud</li>
+        </ul>
+
+        <div class="price-cta">
+          <button class="btn btn-primary btn-lg" type="button" data-waitlist-open>
+            Join the waitlist
+            <svg class="arr" width="13" height="13" viewBox="0 0 12 12" fill="none"><path d="M3 6h6m0 0L6 3m3 3L6 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <div class="price-trust">
+          <span><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> macOS App Store</span>
+          <span><svg viewBox="0 0 24 24" fill="none"><path d="M12 2 4 5v7c0 4.5 3.5 8.5 8 10 4.5-1.5 8-5.5 8-10V5l-8-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> 100% local, zero cloud</span>
+          <span><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M8 12l3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> All future updates included</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 6 — FAQ
+       6 questions (SEO-aligned)
+       ========================================================== -->
+  <section class="faq tuck" id="faq" data-screen-label="06 FAQ">
+    <div class="wrap-narrow">
+      <div class="faq-head">
+        <h2>Questions <em>people ask.</em></h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>How much does it cost?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>$20/year for FocusHacker, the focus app for Mac. That's $1.67/month. You get all features now and all future updates included. Start with a free 7-day trial.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>How do I get started?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Download the app from the Mac App Store. Block your distractions—any app on your Mac or any domain you choose. Set a focus time and we'll guide you through it. Build your focus streak and level up as you use it.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>What distractions can FocusHacker block?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>FocusHacker's distraction blocker works with any app installed on your Mac and any domain you choose. During your focus session, they won't open. Once your session ends, they're accessible again. You're in control.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>Will this work offline?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. FocusHacker works completely offline—no internet required. Download it, use it, build your streak with zero cloud dependency.</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>Is it scientifically proven?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Yes. Every feature is backed by peer-reviewed research: focus sprints improve concentration by +72% (University of Michigan), progress tracking increases productivity by +12% (Harvard), and streaks build habits 2× faster than fresh starts (behavioral psychology).</p>
+          </div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q" type="button">
+            <span>How does this compare to other productivity or distraction apps?</span>
+            <span class="chev"><svg viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </button>
+          <div class="faq-a"><div class="faq-a-inner">
+            <p>Most competitors do one thing: they're timers, or blockers, or habit trackers. FocusHacker is a complete system. You get blocking + guided sessions + streak gamification + progress tracking all integrated together. You don't need four separate tools scattered across your Mac; you need one system that works.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       SECTION 7 — FOOTER
+       Trust signals · secondary links · privacy restatement
+       ========================================================== -->
+  <footer class="footer" data-screen-label="07 Footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <!-- LEFT: Credibility -->
+        <div class="footer-brand">
+          <div class="logo-row">
+            <span class="logo-mark">
+              <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x" alt="" width="28" height="28" decoding="async" />
+            </span>
+            FocusHacker
+          </div>
+          <p class="tag">Build your unbreakable focus streak.</p>
+        </div>
+
+        <!-- CENTER: Product -->
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#how">Features overview</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="/?waitlist=1">Download on Mac App Store</a></li>
+          </ul>
+        </div>
+
+        <!-- CENTER-RIGHT: Company -->
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/who-is-it-for/">Who is it for?</a></li>
+            <li><a href="#faq">Help &amp; Support</a></li>
+            <li><a href="mailto:focushackapp@gmail.com">Contact</a></li>
+            <li><a href="/">About</a></li>
+          </ul>
+        </div>
+
+        <!-- RIGHT: Legal & Trust -->
+        <div class="footer-col">
+          <h4>Legal &amp; Trust</h4>
+          <ul>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/terms-of-service">Terms of Service</a></li>
+            <li><a href="/privacy-policy#local-data">All data stays local</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 FocusHacker · Built natively for Mac</span>
+        <div class="links">
+          <span>macOS app</span>
+          <span style="opacity:.4">·</span>
+          <span>All data local</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WAITLIST MODAL -->
+  <div class="waitlist-modal" id="waitlistModal" hidden aria-hidden="true">
+    <div class="waitlist-modal__backdrop" data-waitlist-close></div>
+    <div class="waitlist-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="waitlistModalTitle">
+      <div class="waitlist-modal__head">
+        <div>
+          <h2 class="waitlist-modal__title" id="waitlistModalTitle">Build unstoppable focus habits</h2>
+          <p class="waitlist-modal__desc">Get early access when FocusHacker for Mac launches—and optionally join our beta to influence the product.</p>
+        </div>
+        <button type="button" class="waitlist-modal__close" data-waitlist-close aria-label="Close">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+
+      <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xwvjylno" method="POST" novalidate>
+        <div class="waitlist-field">
+          <label for="waitlistFirstName">First Name</label>
+          <input type="text" id="waitlistFirstName" name="first_name" autocomplete="given-name" required placeholder="Jane" />
+        </div>
+        <div class="waitlist-field">
+          <label for="waitlistLastName">Last Name</label>
+          <input type="text" id="waitlistLastName" name="last_name" autocomplete="family-name" required placeholder="Smith" />
+        </div>
+        <div class="waitlist-field">
+          <label for="waitlistEmail">Email Address</label>
+          <input type="email" id="waitlistEmail" name="email" autocomplete="email" required placeholder="jane@example.com" />
+        </div>
+        <div class="waitlist-beta">
+          <p class="waitlist-beta__label" id="waitlistBetaLabel">Want to shape the product?</p>
+          <div class="waitlist-checkbox">
+            <input type="checkbox" id="waitlistBeta" name="beta_interested" aria-describedby="waitlistBetaLabel" />
+            <label for="waitlistBeta">Yes, add me to the beta program</label>
+          </div>
+        </div>
+        <p class="waitlist-form__error" id="waitlistError" hidden role="alert"></p>
+        <button class="btn btn-primary waitlist-form__submit" type="submit" id="waitlistSubmit" disabled>Join the Waitlist</button>
+        <p class="waitlist-form__disclaimer">By clicking Join the Waitlist, you agree to receive emails about the launch of FocusHacker. Review our <a href="/privacy-policy">privacy policy</a>. To opt out, email <a href="mailto:focushackerapp@gmail.com">focushackerapp@gmail.com</a>.</p>
+      </form>
+
+      <div class="waitlist-success" aria-live="polite">
+        <div class="waitlist-success__icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="waitlist-success__title">Thanks! You're on the list.</h3>
+        <p class="waitlist-success__text">We'll be in touch when FocusHacker for Mac is ready.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWEAKS PANEL -->
+  <div class="tweaks" id="tweaks" role="dialog" aria-label="Tweaks">
+    <div class="tweaks-head">
+      <span class="title">Tweaks</span>
+      <button class="close" type="button" id="tweaksClose" aria-label="Close">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="tweaks-section">
+      <div class="tweaks-label">Flame accent</div>
+      <div class="tweaks-row" id="swatches"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
