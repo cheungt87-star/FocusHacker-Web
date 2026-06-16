@@ -12,7 +12,7 @@ function nav() {
     <nav class="nav" id="nav" aria-label="Primary">
       <a href="/" class="nav-logo">
         <span class="logo-mark">
-          <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x" alt="" width="28" height="28" decoding="async" />
+          <img src="/logo.png?v=2" srcset="/logo.png?v=2 1x, /logo@2x.png?v=2 2x" alt="" width="28" height="28" decoding="async" />
         </span>
         FocusHacker
       </a>
@@ -41,7 +41,7 @@ function footer() {
         <div class="footer-brand">
           <div class="logo-row">
             <span class="logo-mark">
-              <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x" alt="" width="28" height="28" decoding="async" />
+              <img src="/logo.png?v=2" srcset="/logo.png?v=2 1x, /logo@2x.png?v=2 2x" alt="" width="28" height="28" decoding="async" />
             </span>
             FocusHacker
           </div>
@@ -109,8 +109,8 @@ function headMeta({ title, description, url, datePublished, headline }) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>${title}</title>
   <meta name="description" content="${description}" />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -203,8 +203,8 @@ function blogIndexPage() {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Blog | FocusHacker</title>
   <meta name="description" content="Focus systems, productivity psychology, and Mac focus tool guides from FocusHacker." />
-  <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" sizes="180x180" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
