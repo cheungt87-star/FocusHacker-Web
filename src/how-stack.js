@@ -1,6 +1,6 @@
 /**
- * Sticky card stack for #how — desktop uses CSS runway; mobile measures pin heights.
- * Toggles .how-stack--static when prefers-reduced-motion: reduce.
+ * Sticky card stack for #how — desktop uses CSS runway; mobile uses flat scroll layout.
+ * Toggles .how-stack--static when prefers-reduced-motion: reduce or viewport ≤980px.
  */
 export function initHowStack() {
   const stack = document.querySelector(".how-stack");
@@ -25,8 +25,12 @@ export function initHowStack() {
     });
   }
 
+  function isFlatLayout() {
+    return mqStatic.matches || mqMobile.matches;
+  }
+
   function measureMobileStack() {
-    if (mqStatic.matches || !mqMobile.matches || stack.classList.contains("how-stack--static")) {
+    if (isFlatLayout() || stack.classList.contains("how-stack--static")) {
       clearMobileMetrics();
       return;
     }
@@ -66,7 +70,7 @@ export function initHowStack() {
       resizeObserver.disconnect();
       resizeObserver = null;
     }
-    if (mqStatic.matches || !mqMobile.matches) return;
+    if (isFlatLayout()) return;
 
     resizeObserver = new ResizeObserver(scheduleMeasure);
     pins.forEach((pin) => {
@@ -76,10 +80,10 @@ export function initHowStack() {
   }
 
   function apply() {
-    const isStatic = mqStatic.matches;
-    stack.classList.toggle("how-stack--static", isStatic);
+    const isFlat = isFlatLayout();
+    stack.classList.toggle("how-stack--static", isFlat);
 
-    if (isStatic || !mqMobile.matches) {
+    if (isFlat) {
       clearMobileMetrics();
       if (resizeObserver) resizeObserver.disconnect();
       return;

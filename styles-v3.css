@@ -157,6 +157,8 @@ p { margin: 0; text-wrap: pretty; color: var(--ink-2); font-family: var(--font-s
    ============================================================ */
 .wrap        { max-width: 1240px; margin: 0 auto; padding: 0 32px; }
 .wrap-narrow { max-width: 920px;  margin: 0 auto; padding: 0 32px; }
+
+#top, #how, #pricing, #faq { scroll-margin-top: 88px; }
 .section     { padding: var(--section-pad) 0;  position: relative; }
 .section-tight { padding: var(--section-pad-tight) 0; }
 
@@ -221,7 +223,7 @@ p { margin: 0; text-wrap: pretty; color: var(--ink-2); font-family: var(--font-s
   justify-content: center;
   gap: 12px;
   width: 100%;
-  padding: 9px 48px 9px 16px;
+  padding: max(9px, env(safe-area-inset-top)) 48px 9px 16px;
   background: var(--flame);
   color: #fff;
   font-size: 13.5px;
@@ -258,7 +260,7 @@ p { margin: 0; text-wrap: pretty; color: var(--ink-2); font-family: var(--font-s
    NAV — pill-shaped, frosted glass on warm page
    ============================================================ */
 .nav-wrap {
-  position: sticky; top: 12px; z-index: 80;
+  position: sticky; top: max(12px, env(safe-area-inset-top)); z-index: 80;
   display: flex; justify-content: center;
   padding: 0 24px;
   pointer-events: none;
@@ -3737,11 +3739,50 @@ body.waitlist-modal-open { overflow: hidden; }
     background: transparent;
   }
   .how-stack--static .how-stack__card.pair {
-    padding: 48px clamp(22px, 5vw, 32px);
+    padding: 36px clamp(22px, 5vw, 32px);
   }
   .how-stack--static .pair {
     gap: 32px;
   }
+  .how-stack--static .principle h3 {
+    font-size: clamp(28px, 7vw, 40px);
+    margin-bottom: 14px;
+  }
+  .how-stack--static .product .viz-frame {
+    min-height: 0;
+    padding: clamp(22px, 4.5vw, 32px) clamp(18px, 4vw, 28px);
+    overflow: visible;
+  }
+  .how-stack--static .product .viz-frame > :not(.viz-tag) {
+    overflow: visible;
+  }
+  .how-stack--static .blocked-items-viewport,
+  .how-stack--static .guided-session-viewport,
+  .how-stack--static .visual-progress-viewport {
+    min-height: auto;
+    overflow: visible;
+  }
+  .how-stack--static .blocked-items-view:not(.is-active):not(.is-fading),
+  .how-stack--static .guided-session-view:not(.is-active):not(.is-fading),
+  .how-stack--static .visual-progress-view:not(.is-active):not(.is-fading) {
+    display: none;
+  }
+  .how-stack--static .blocked-items-view.is-active,
+  .how-stack--static .blocked-items-view.is-fading,
+  .how-stack--static .guided-session-view.is-active,
+  .how-stack--static .guided-session-view.is-fading,
+  .how-stack--static .visual-progress-view.is-active,
+  .how-stack--static .visual-progress-view.is-fading {
+    position: relative;
+    inset: auto;
+    height: auto;
+    overflow: visible;
+  }
+  .how-stack--static .visual-progress-view.is-active,
+  .how-stack--static .visual-progress-view.is-fading {
+    overflow: visible;
+  }
+  #top, #how, #pricing, #faq { scroll-margin-top: 72px; }
   .pair { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
   .how-pairs .wrap {
     padding-inline: clamp(16px, 4vw, 24px);
@@ -3807,12 +3848,13 @@ body.waitlist-modal-open { overflow: hidden; }
   .product .viz-frame {
     display: flex;
     flex-direction: column;
+    min-height: 0;
   }
   .blocked-items-viewport,
   .guided-session-viewport,
   .visual-progress-viewport {
     flex: 1 1 auto;
-    min-height: clamp(240px, 42vh, 320px);
+    min-height: auto;
   }
 }
 @media (max-width: 620px) {
@@ -3821,9 +3863,62 @@ body.waitlist-modal-open { overflow: hidden; }
     --section-pad-tight: 72px;
     --pair-pad: 44px;
   }
+  .wrap,
+  .wrap-narrow {
+    padding: 0 clamp(16px, 4vw, 32px);
+  }
   .how-pairs, .proof-forest, .pricing, .faq { padding: var(--section-pad) 0; }
-  .hero { padding: 30px 0 60px; }
-  .hero-visual { min-height: 240px; }
+  .hero { padding: 24px 0 48px; }
+  .hero h1 {
+    font-size: clamp(36px, 9vw, 56px);
+  }
+  .hero-sub {
+    font-size: clamp(16px, 4.2vw, 18px);
+  }
+  .hero-visual {
+    min-height: 200px;
+    aspect-ratio: 4 / 3;
+  }
+  .waitlist-banner {
+    font-size: 12px;
+    padding: max(8px, env(safe-area-inset-top)) 40px 8px 12px;
+    line-height: 1.45;
+  }
+  .how-stack--static .how-stack__card.pair {
+    padding: 28px clamp(18px, 4.5vw, 28px);
+  }
+  .how-stack--static .principle .principle-lede {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+  .how-stack--static .bullets li {
+    font-size: 14px;
+  }
+  .how-stack--static .product .viz-frame {
+    padding: clamp(20px, 4vw, 28px) clamp(16px, 3.5vw, 24px);
+  }
+  .focus-session-stage {
+    min-height: 80px;
+  }
+  .focus-session-stage__timer {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .pricing-head h2 {
+    font-size: clamp(32px, 8vw, 44px);
+  }
+  .price-row .amount {
+    font-size: clamp(52px, 18vw, 92px);
+  }
+  .price-row .per {
+    font-size: clamp(16px, 4vw, 22px);
+  }
+  .price-tier {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  .price-breakdown {
+    gap: 8px;
+  }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer {
     padding: 48px 0 24px;
