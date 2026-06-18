@@ -14,6 +14,10 @@ Handoff documentation for replicating **Section 3: How It Works** (`#how`) from 
 
 **Not authoritative:** `_archive/index-v3.html` uses flat `.pair` rows without `.how-stack` sticky behavior.
 
+**React / Next.js port:** See [HOW-SECTION-REPLICATION-REACT.md](./HOW-SECTION-REPLICATION-REACT.md).
+
+**Mobile behavior (current code):** `src/how-stack.js` applies `.how-stack--static` at **≤980px** and **`prefers-reduced-motion: reduce`** — flat vertical list, not sticky handoffs. §7–8 below reflect this; ignore older notes about mobile sticky measurement.
+
 ---
 
 ## 1. Overview and goals
@@ -435,39 +439,30 @@ Active stack cards (not static):
 
 | Breakpoint | Stack | Headline / h3 | JS |
 |------------|-------|---------------|-----|
-| **>980px** | CSS runway + fixed card height | h2 large; principle vertically centered in card | `initHowStack` clears mobile metrics |
-| **≤980px** | Sticky + measured slots; auto card height; 32px gap between pins | Smaller h3; principle top-aligned | `measureMobileStack()` runs |
-| **≤620px** | Same as mobile | Tighter card/viz padding | Same |
-| **`prefers-reduced-motion: reduce`** | `.how-stack--static` flat list | No motion | No mobile measure; mocks don’t auto-play |
+| **>980px** | Sticky stack: CSS runway + fixed card height | h2 large; principle vertically centered in card | `initHowStack` runs; `measureMobileStack()` may set inline pin heights after font load |
+| **≤980px** | **Flat list** — `.how-stack--static` | Smaller h3; single column (principle above product) | `isFlatLayout()` true; no sticky; `clearMobileMetrics()` |
+| **≤620px** | Same flat list | Tighter card/viz padding via `.how-stack--static` rules | Same |
+| **`prefers-reduced-motion: reduce`** | `.how-stack--static` flat list | No motion | Same as mobile; mocks don’t auto-play |
 
-### Mobile CSS highlights (≤980px)
+### Mobile and reduced motion — `.how-stack--static`
+
+Applied by JS when **viewport ≤ 980px** or **`prefers-reduced-motion: reduce`** (`isFlatLayout()` in `how-stack.js`):
 
 ```css
-.how-stack:not(.how-stack--static) {
-  --stack-top: 72px;
-  --stack-viz-h: clamp(220px, 38vh, 300px);
-  min-height: 0; /* JS sets inline min-height */
-}
-.how-stack:not(.how-stack--static) .how-stack__pin {
-  height: auto;
-  min-height: var(--stack-slot, min(calc(100dvh - var(--stack-top) - 16px), 520px));
-}
-.how-stack:not(.how-stack--static) .how-stack__pin:not(:last-child) {
-  margin-bottom: 32px;
-}
-.how-stack:not(.how-stack--static) .how-stack__card.pair {
-  height: auto;
-  min-height: auto;
-  max-height: none;
-}
 .pair { grid-template-columns: 1fr; }
 .pair.reverse .principle,
 .pair.reverse .product { order: 0; }
 ```
 
-### Reduced motion — `.how-stack--static`
+At ≤980px, `@media` rules also set `.how-head { margin-bottom: 48px; }` and `.how-pairs .wrap { padding-inline: clamp(16px, 4vw, 24px); }`.
 
-Applied by JS when `prefers-reduced-motion: reduce`:
+### Legacy CSS note
+
+`styles-v3.css` still contains `.how-stack:not(.how-stack--static)` rules inside `@media (max-width: 980px)` (lines ~3690–3751). **These do not apply at runtime** because JS adds `.how-stack--static` on mobile. Keep them only if you change `how-stack.js` to re-enable mobile sticky.
+
+### Reduced motion — same as mobile flat layout
+
+Also applied when `prefers-reduced-motion: reduce`:
 
 ```css
 .how-stack--static .how-stack__pin {
@@ -497,23 +492,25 @@ Applied by JS when `prefers-reduced-motion: reduce`:
 
 **Media queries:**
 
-- `mqStatic`: `(prefers-reduced-motion: reduce)` → adds `.how-stack--static`
-- `mqMobile`: `(max-width: 980px)` → enables height measurement
+- `mqStatic`: `(prefers-reduced-motion: reduce)`
+- `mqMobile`: `(max-width: 980px)`
+- **`isFlatLayout()`** — `mqStatic.matches || mqMobile.matches` → adds `.how-stack--static`, calls `clearMobileMetrics()`, returns early (no sticky)
 
 **Constants:**
 
-- `STEP_GAP = 32` (px between pins on mobile)
+- `STEP_GAP = 32` (px between pins when measuring)
 - `MIN_SLOT_VH = 0.85` (minimum slot as fraction of viewport)
 
-**`measureMobileStack()` algorithm** (only when mobile + motion allowed + not static):
+**`apply()` flow:**
+
+1. If `isFlatLayout()` → toggle `.how-stack--static` on, clear inline metrics, disconnect `ResizeObserver`, return.
+2. Else (desktop, motion allowed) → remove static class, run `measureMobileStack()` in `requestAnimationFrame`, attach `ResizeObserver`.
+
+**`measureMobileStack()` algorithm** (desktop only — when not flat):
 
 1. Read `--stack-top` from computed style (fallback `72`).
 2. `minSlot = max(320, round(innerHeight * 0.85 - topPx - 16))`.
-3. For each pin:
-   - Measure `.how-stack__card` height via `getBoundingClientRect()`.
-   - `slot = max(cardHeight, minSlot)`.
-   - Set inline: `--stack-slot`, `--stack-step-local`, `min-height` on pin.
-   - Accumulate `totalFlow += slot + (gap if not last pin)`.
+3. For each pin: measure card height, set inline `--stack-slot`, `min-height` on pin; accumulate `totalFlow`.
 4. Set `stack.style.minHeight = totalFlow + 'px'`.
 
 **Listeners:**
@@ -523,9 +520,9 @@ Applied by JS when `prefers-reduced-motion: reduce`:
 - `window` `load`
 - `document.fonts.ready` (if available)
 
-**ResizeObserver:** Observes each `.how-stack__card` on mobile to re-run measure when content/fonts change.
+**ResizeObserver:** Observes each `.how-stack__card` on desktop to re-run measure when content/fonts change.
 
-**Desktop (>980px):** No inline sizing; relies entirely on CSS `min-height: calc(var(--stack-step) * 4 - 32px)`.
+**Desktop (>980px):** Sticky stack active; CSS provides `min-height: calc(var(--stack-step) * 4 - 32px)`; JS may augment with measured pin heights.
 
 ### `initHowMocks()` — `src/how-mocks.js`
 
@@ -703,6 +700,8 @@ At ≤980px, `.how-pairs .wrap` uses `padding-inline: clamp(16px, 4vw, 24px)`.
 9. [ ] Add **responsive** overrides (980px, 620px) and **`.how-stack--static`** rules.
 10. [ ] Run **QA** (§12).
 
+For a portable CSS bundle with exact line ranges, see [HOW-SECTION-REPLICATION-REACT.md §12](./HOW-SECTION-REPLICATION-REACT.md#12-css-extraction-how-sectioncss).
+
 ---
 
 ## 12. QA / acceptance criteria
@@ -718,14 +717,14 @@ At ≤980px, `.how-pairs .wrap` uses `padding-inline: clamp(16px, 4vw, 24px)`.
 
 ### Mobile (≤980px)
 
-- [ ] Cards are not clipped; full content visible per pin.
-- [ ] Stack is tall enough to scroll through all four cards with sticky behavior.
-- [ ] Single-column layout: principle above product.
-- [ ] Resizing viewport or loading webfonts re-measures stack (no overlap glitches).
+- [ ] Flat vertical list (`.how-stack--static` applied by JS)
+- [ ] Border separators between cards
+- [ ] Single-column layout: principle above product
+- [ ] `.pair.reverse` order reset (product not forced left on mobile)
 
 ### Reduced motion
 
-- [ ] `.how-stack--static` — vertical list, no sticky overlap.
+- [ ] `.how-stack--static` — vertical list, no sticky overlap
 - [ ] Borders between cards instead of stacked deck.
 - [ ] No automatic mock slideshows or preset cycling.
 
@@ -745,7 +744,8 @@ At ≤980px, `.how-pairs .wrap` uses `padding-inline: clamp(16px, 4vw, 24px)`.
 | Using CSS `scroll-snap` | Fights sticky physics; wrong feel | Use sticky pins + runway `min-height` only |
 | Missing pin z-index | Cards don’t layer | `nth-child` z-index 1 through 4 |
 | No tuck on prior section | Hard edge, no curve | Apply `.tuck` on `problem-forest`; set z-index |
-| No stack `min-height` | No scroll room; no handoffs | Desktop: `calc(var(--stack-step) * 4 - 32px)`; mobile: JS `totalFlow` |
+| No stack `min-height` | No scroll room; no handoffs | Desktop: `calc(var(--stack-step) * 4 - 32px)` |
+| Expecting mobile sticky | No handoffs on phone | JS flattens at ≤980px via `.how-stack--static` |
 | Breakpoint mismatch (e.g. 1024 vs 980) | JS measures when CSS expects desktop, or vice versa | Use **980px** in both CSS `@media` and `matchMedia` |
 | `--stack-top` wrong for nav | Cards stick under or far below nav | Match nav height (88px / 72px) |
 | Fewer than four pins | Runway math wrong | Always four pins or recalculate `min-height` |
@@ -774,4 +774,4 @@ At ≤980px, `.how-pairs .wrap` uses `padding-inline: clamp(16px, 4vw, 24px)`.
 
 ---
 
-*Document version aligns with FocusHacker Web repo implementation (sticky stack + modular `how-stack.js` / `how-mocks.js`). Line numbers in source files may drift; search by class names and function names when in doubt.*
+*Document version aligns with FocusHacker Web repo implementation (desktop sticky stack; mobile/reduced-motion flat list via `.how-stack--static`). Line numbers in source files may drift; search by class names and function names when in doubt. React port: [HOW-SECTION-REPLICATION-REACT.md](./HOW-SECTION-REPLICATION-REACT.md).*
