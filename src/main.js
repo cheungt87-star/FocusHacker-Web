@@ -1,7 +1,10 @@
+import { inject } from "@vercel/analytics";
 import { setupProblemVizPlayback } from "./problem-viz.js";
 import { initHowStack } from "./how-stack.js";
 import { initHowMocks } from "./how-mocks.js";
 import "./waitlist.js";
+
+inject();
 
 /* ====== TWEAKS DEFAULTS ====== */
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
