@@ -7,8 +7,8 @@ function staticIndexRouteFix(): Plugin {
   const redirects: Record<string, string> = {
     "/blog": "/blog/",
     "/who-is-it-for": "/who-is-it-for/",
-    "/privacy-policy": "/privacy-policy.html",
-    "/terms-of-service": "/terms-of-service.html",
+    "/privacy": "/privacy.html",
+    "/terms": "/terms.html",
   };
   const middleware = (
     req: { url?: string },
@@ -48,8 +48,8 @@ export default defineConfig({
         blogFocusApps: resolve(__dirname, "blog/focus-apps-vs-systems.html"),
         blogBestTools: resolve(__dirname, "blog/best-focus-tools-mac.html"),
         whoIsItFor: resolve(__dirname, "who-is-it-for/index.html"),
-        privacyPolicy: resolve(__dirname, "privacy-policy.html"),
-        termsOfService: resolve(__dirname, "terms-of-service.html"),
+        privacy: resolve(__dirname, "privacy.html"),
+        terms: resolve(__dirname, "terms.html"),
       },
     },
   },

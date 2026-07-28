@@ -8,6 +8,10 @@
     { "source": "/blog/mvp04", "destination": "/blog/focus-apps-vs-systems", "permanent": true },
     { "source": "/blog/mvp04/", "destination": "/blog/focus-apps-vs-systems", "permanent": true },
     { "source": "/blog/mvp05", "destination": "/blog/best-focus-tools-mac", "permanent": true },
-    { "source": "/blog/mvp05/", "destination": "/blog/best-focus-tools-mac", "permanent": true }
+    { "source": "/blog/mvp05/", "destination": "/blog/best-focus-tools-mac", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+    { "source": "/privacy-policy/", "destination": "/privacy", "permanent": true },
+    { "source": "/terms-of-service", "destination": "/terms", "permanent": true },
+    { "source": "/terms-of-service/", "destination": "/terms", "permanent": true }
   ]
 }
